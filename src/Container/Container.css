@@ -1,33 +1,21 @@
 .container {
-    max-width: 100rem;
-    padding: 5.5rem 3.5rem;
-    overflow: scroll;
+    max-width: 65vw;
+    margin: 3rem auto;
+    min-height: 73vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
 }
 
-.nav-link {
-    text-decoration: none;
-    font-size: 1.2rem;
-    margin: 4rem 1rem 0 1rem;
-    color: #000;
+
+@media only screen and (max-width:768px) {
+    
+    .container {
+        width: 50vw;
+    }
+
     
 }
 
-.nav-link:visited {
-    color: #000;
-}
-
-.navbar {
-    margin-left: 2rem;
-}
-
-
-@media only screen and (max-width:990px){
-    .container{
-        padding: 5.5rem 2rem;
-    }
-
-    .nav-link {
-        margin: 4rem 0.5rem 0 0.5rem;
-    }
-
-}

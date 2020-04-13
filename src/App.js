@@ -1,42 +1,23 @@
-import React from 'react';
+import React,{Component} from 'react';
 import './App.css';
-import Sidebar from './Sidebar/Sidebar'
 import Container from './Container/Container'
-import menu from './Container/open-menu.svg'
-import {connect} from 'react-redux'
+import Sidebar from './Sidebar/Sidebar'
 
-function App(props) {
 
-  let style;
 
-  if(window.matchMedia("(max-width: 870px)").matches){
-    style = props.showSideBar === true?{display:'none'} : {display:'block'};
-}
+class App extends Component {
 
-  
+  render(){
 
-  return (
-    <div className="App">
-      <Sidebar />
-      <img src={menu} alt="" className="menu-icon" onClick={props.showSide} style={style} />
-      <div className="filler"></div>
-      <Container />
-      <div className="filler"></div>
-    </div>
-  );
-}
-
-const mapStateToProps = state => {
-  return {
-      showSideBar:state.showSideBar
+    return (
+      <div className="App">
+        <Sidebar />
+        <Container />
+      </div>
+    )
+    
   }
+
 }
 
-const mapDispathToProps = dispatch => {
-  return {
-      showSide:()=> dispatch({type:'show'})
-  }
-}
-
-
-export default connect(mapStateToProps,mapDispathToProps)(App)
+export default App

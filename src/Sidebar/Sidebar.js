@@ -1,37 +1,31 @@
 import React from 'react'
 import ReposWrapper from './ReposWrapper'
 import './Sidebar.css'
-import githubLogo from './github.png'
-import {connect} from 'react-redux'
 
-const sidebar = props=> {
-    let style;
-    if(window.matchMedia("(max-width: 870px)").matches){
-         style = props.showSideBar === true ? {display:'block',visiblity:'visible',opacity:'1'} : {display:'none',visiblity:'hidden',opacity:'0'};
-    }
-
-    
-    
+const sidebar = ()=> {
     return(
-        <div className="sidebar" style={style}>
-            <h1 className="close" onClick={props.hideSideBar}>X</h1>
-            <p className="myRepos" > <img src={githubLogo} alt="github" className="logo" /> Repositories</p>
-            <ReposWrapper />
+        <div>
+        <input type="checkbox" name="checkbox" id="checkbox"></input>
+        {/* {React.createElement('input',{type: 'checkbox',  defaultChecked: false, name:"checkbox", id:"checkbox"})} */}
+        <aside id="sidebar">
+              <header className="navbar-header">
+                  <p className="myRepos" >Repositories</p>
+              </header>
+              <main className="navbar-body">
+                  <ReposWrapper scrollable="1" />
+              </main>
+          </aside>
+          
+        <aside id="sidebar-lg">
+              <header className="navbar-header-lg">
+                  <p className="myRepos-lg" >Repositories</p>
+              </header>
+              <main className="navbar-body-lg">
+                  <ReposWrapper scrollabe="2" />
+              </main>
+          </aside>
         </div>
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        showSideBar:state.showSideBar
-    }
-}
-
-const mapDispathToProps = dispatch => {
-    return {
-        hideSideBar:()=> dispatch({type:'close'})
-    }
-}
-
-
-export default connect(mapStateToProps,mapDispathToProps)(sidebar)
+export default sidebar

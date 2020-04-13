@@ -1,9 +1,183 @@
 .repoRoute {
     color: #000;
-    margin: 6rem 3rem;
+    margin: 3rem 1rem;
     font-size: 1.4rem;
-    background-color: #eee;
+    min-height: 85vh;
+    width: 65vw;
+    color: #111;
+    background-color: #fdfdfd;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-feature-settings: "kern" 1;
+    -moz-font-feature-settings: "kern" 1;
+    -o-font-feature-settings: "kern" 1;
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
+    overflow: scroll;
+
+
 }
+
+.repoRoute > #content {
+  margin: 0px;
+  max-width: 900px;
+  border: 1px solid #e1e4e8;
+  padding: 10px 40px;
+  padding-bottom: 20px;
+  border-radius: 2px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.repoRoute hr {
+  color: #bbb;
+  background-color: #bbb;
+  height: 1px;
+  flex: 0 1 auto;
+  margin: 1em 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+ * Links
+ */
+.repoRoute a {
+  color: #0366d6;
+  text-decoration: none; }
+  .repoRoute a:visited {
+    color: #0366d6; }
+  .repoRoute a:hover {
+    color: #0366d6;
+    text-decoration: underline; }
+
+.repoRoute pre {
+  background-color: #f6f8fa;
+  border-radius: 3px;
+  font-size: 85%;
+  line-height: 1.45;
+  overflow: auto;
+  padding: 16px;
+}
+
+/**
+  * Code blocks
+  */
+
+.repoRoute code {
+  background-color: rgba(27,31,35,.05);
+  border-radius: 3px;
+  font-size: 85%;
+  margin: 0;
+  word-wrap: break-word;
+  padding: .2em .4em;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+}
+
+.repoRoute pre > code {
+  background-color: transparent;
+  border: 0;
+  display: inline;
+  line-height: inherit;
+  margin: 0;
+  overflow: visible;
+  padding: 0;
+  word-wrap: normal;
+  font-size: 100%;
+}
+
+
+/**
+ * Blockquotes
+ */
+.repoRoute blockquote {
+  margin-left: 30px;
+  margin-top: 0px;
+  margin-bottom: 16px;
+  border-left-width: 3px;
+  padding: 0 1em;
+  color: #828282;
+  border-left: 4px solid #e8e8e8;
+  padding-left: 15px;
+  font-size: 18px;
+  letter-spacing: -1px;
+  font-style: italic;
+}
+.repoRoute blockquote * {
+  font-style: normal !important;
+  letter-spacing: 0;
+  color: #6a737d !important;
+}
+
+/**
+ * Tables
+ */
+.repoRoute table {
+  border-spacing: 2px;
+  display: block;
+  font-size: 14px;
+  overflow: auto;
+  width: 100%;
+  margin-bottom: 16px;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.repoRoute td {
+  padding: 6px 13px;
+  border: 1px solid #dfe2e5;
+}
+
+.repoRoute th {
+  font-weight: 600;
+  padding: 6px 13px;
+  border: 1px solid #dfe2e5;
+}
+
+.repoRoute tr {
+  background-color: #fff;
+  border-top: 1px solid #c6cbd1;
+}
+
+.repoRoute table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+/**
+ * Others
+ */
+
+.repoRoute img {
+  max-width: 100%;
+}
+
+.repoRoute p {
+  line-height: 24px;
+  font-weight: 400;
+  font-size: 16px;
+  color: #24292e; }
+
+.repoRoute ul {
+  margin-top: 0; }
+
+.repoRoute li {
+  color: #24292e;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5; }
+
+.repoRoute li + li {
+  margin-top: 0.25em; }
+
+
+
+.repoRoute a:visited {
+  color: #0366d6; }
+
+.repoRoute h1, .repoRoute h2, .repoRoute h3 {
+  border-bottom: 1px solid #eaecef;
+  color: #111;
+  /* Darker */ }
+
 
 .link,link:visited {
     color: #000;
@@ -17,3 +191,11 @@
 .link-wrap {
     margin-top: 1rem;
 }
+
+/* @media only screen and (max-width:768px) {
+    .repoRoute {
+        padding-left: 4rem;
+    }
+
+}
+ */
