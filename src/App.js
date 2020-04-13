@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Sidebar from './Sidebar/Sidebar'
+import Container from './Container/Container'
+import menu from './Container/open-menu.svg'
+import {connect} from 'react-redux'
 
-function App() {
+function App(props) {
+
+  let style;
+
+  if(window.matchMedia("(max-width: 870px)").matches){
+    style = props.showSideBar === true?{display:'none'} : {display:'block'};
+}
+
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Sidebar />
+      <img src={menu} alt="" className="menu-icon" onClick={props.showSide} style={style} />
+      <div className="filler"></div>
+      <Container />
+      <div className="filler"></div>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+      showSideBar:state.showSideBar
+  }
+}
+
+const mapDispathToProps = dispatch => {
+  return {
+      showSide:()=> dispatch({type:'show'})
+  }
+}
+
+
+export default connect(mapStateToProps,mapDispathToProps)(App)
