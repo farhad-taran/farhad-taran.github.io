@@ -1,11 +1,13 @@
 .container {
-    max-width: 65vw;
-    margin: 3rem auto;
+    max-width: 75vw;
+    margin: 2rem auto;
     min-height: 73vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    background: #fafafa;
+
 
 }
 
@@ -13,7 +15,8 @@
 @media only screen and (max-width:768px) {
     
     .container {
-        width: 50vw;
+        width: 70vw;
+        margin: 1rem auto;
     }
 
     

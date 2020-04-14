@@ -15,7 +15,8 @@ class Repo extends Component {
         repos:this.props.newState.repos,
         src:'',
         created:'',
-        updated:''  
+        updated:'',
+        userName:'Colt'  
     }
 
     componentDidMount(){
@@ -26,16 +27,16 @@ class Repo extends Component {
         else {
             const fetchedRepo = this.state.repos.filter(el => {
                 return el.id == this.props.match.params.id
-             })
+             })[0];
              this.setState({
-                 src:fetchedRepo[0].html_url,
-                 created:fetchedRepo[0].created_at,
-                 updated:fetchedRepo[0].updated_at,
+                 src:fetchedRepo.html_url,
+                 created:fetchedRepo.created_at,
+                 updated:fetchedRepo.updated_at,
                  
              })
 
-             if(fetchedRepo[0].name){
-                axios.get(`${fetchedRepo[0].url}/readme`)
+             if(fetchedRepo.name){
+                axios.get(`${fetchedRepo.url}/readme`)
                 .then(response => {
                     axios.get(`${response.data.download_url}`)
                     .then(res => {
@@ -47,11 +48,12 @@ class Repo extends Component {
                 })
              }
              else {
-                 const keysArr = Object.keys(fetchedRepo[0].files)
+                 const keysArr = Object.keys(fetchedRepo.files)
                  keysArr.forEach(key => {
                     
                         if(key.includes('.md')){
-                           axios.get(`${fetchedRepo[0].files[key].raw_url}`)
+                        //    axios.get(`${fetchedRepo.files[key].raw_url}`)
+                            axios.get(`https://gist.githubusercontent.com/${this.state.userName}/${fetchedRepo.id}/raw/${key}`)                            
                            .then(res => {
                                this.setState({
                                    readMe:res.data
@@ -74,24 +76,25 @@ class Repo extends Component {
     componentWillReceiveProps(nextProps){
         const fetchedRepo = this.state.repos.filter(el => {
             return el.id == nextProps.match.params.id
-         })
+         })[0]
          if(!fetchedRepo) return
          this.setState({
-            src:fetchedRepo[0].html_url,
-            created:fetchedRepo[0].created_at,
-            updated:fetchedRepo[0].updated_at,
+            src:fetchedRepo.html_url,
+            created:fetchedRepo.created_at,
+            updated:fetchedRepo.updated_at,
         })
 
-         if(fetchedRepo[0].name){
+         if(fetchedRepo.name){
             
-            axios.get(`${fetchedRepo[0].url}/readme`)
+            axios.get(`${fetchedRepo.url}/readme`)
+
             .then(response => {
                 axios.get(`${response.data.download_url}`)
                     .then(res => {
                         this.setState({
                             readMe:res.data,
-                            created:fetchedRepo[0].created_at,
-                            updated:fetchedRepo[0].updated_at,
+                            created:fetchedRepo.created_at,
+                            updated:fetchedRepo.updated_at,
                         })
                     })       
             })  
@@ -99,13 +102,14 @@ class Repo extends Component {
 
          else {
             this.setState({
-                src:fetchedRepo[0].html_url
+                src:fetchedRepo.html_url
             })
-            const keysArr = Object.keys(fetchedRepo[0].files)
+            const keysArr = Object.keys(fetchedRepo.files)
             keysArr.forEach(key => {
                
                    if(key.includes('.md')){
-                      axios.get(`${fetchedRepo[0].files[key].raw_url}`)
+                    //   axios.get(`${fetchedRepo.files[key].raw_url}`)
+                        axios.get(`https://gist.githubusercontent.com/${this.state.userName}/${fetchedRepo.id}/raw/${key}`) 
                       .then(res => {
                           this.setState({
                               readMe:res.data

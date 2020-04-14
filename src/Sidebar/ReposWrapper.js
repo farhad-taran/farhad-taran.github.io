@@ -14,19 +14,20 @@ class ReposWrapper extends Component {
         perPage:30,
         repos:[],
         totalList:[],
-        hasMore:true
+        hasMore:true,
+        userName:'Colt'
     }
 
     
     
     componentDidMount(){
         const {page,perPage} = this.state;
-        axios.get(`https://api.github.com/users/Colt/repos?page=${page}&per_page=${perPage}&sort=updated`)
+        axios.get(`https://api.github.com/users/${this.state.userName}/repos?page=${page}&per_page=${perPage}&sort=updated`)
         .then(response => {
             this.setState({repos:response.data,totalList:response.data},()=> {
                 this.props.storeRepos(this.state.totalList)
             });
-            axios.get(`https://api.github.com/users/Colt/gists?page=${page}&per_page=${perPage}`)
+            axios.get(`https://api.github.com/users/${this.state.userName}/gists?page=${page}&per_page=${perPage}`)
             .then(res => {
                 this.setState({totalList:this.state.totalList.concat(...res.data)},()=> {
                     this.props.storeRepos(this.state.totalList)
@@ -44,7 +45,12 @@ class ReposWrapper extends Component {
 
     loadNext = ()=> {
         this.setState(prevState=> ({page:prevState.page +1}),()=> {
-            axios.get(`https://api.github.com/users/Colt/repos?page=${this.state.page}&per_page=${this.state.perPage}&sort=updated`)
+            axios.get(`https://api.github.com/users/${this.state.userName}/repos?page=${this.state.page}&per_page=${this.state.perPage}&sort=updated`,
+            {
+                headers:{
+                    'Authorization':'46a9a67a3916e43d88af94d6f817d4c8c87a6ddc'
+                }
+            })
             .then(response => {
                 if(response.data.length == 0){
                     this.setState({
@@ -58,7 +64,12 @@ class ReposWrapper extends Component {
                 })
                 this.props.storeRepos(this.state.totalList);
                 console.log(this.state.page);
-                axios.get(`https://api.github.com/users/Colt/gists?page=${this.state.page}&per_page=${this.state.perPage}`)
+                axios.get(`https://api.github.com/users/${this.state.userName}/gists?page=${this.state.page}&per_page=${this.state.perPage}`,
+                {
+                    headers:{
+                        'Authorization':'46a9a67a3916e43d88af94d6f817d4c8c87a6ddc',
+                    }
+                })
                 .then(res => {
                     this.setState({
                         totalList:this.state.totalList.concat(...res.data)
@@ -85,7 +96,7 @@ class ReposWrapper extends Component {
                 <InfiniteScroll 
                 dataLength={this.state.totalList.length}
                 next={this.loadNext}
-                scrollableTarget={`target${this.props.scrollable}`}
+                // scrollableTarget={`target${this.props.scrollable}`}
                 hasMore={this.state.hasMore}
                 loader={<LoadingSpinner/>}>
                      {renderRepos} 

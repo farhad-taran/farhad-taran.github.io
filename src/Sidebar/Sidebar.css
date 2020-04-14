@@ -1,27 +1,35 @@
 
 
 #sidebar,#sidebar-lg {
-    background-color: #d1cebd;
-    color:#fff;
-    width: 20rem;
+    background: #ffcc19;
+    color: #6b6b6b;
+    width: 250px;
     text-align: center;
-    height: 100vh;
-    overflow: hidden;
+    margin-right: 1rem;
+    min-height: 100vh;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   }
 
   #sidebar {
-    transform: translateX(-220px);
+    transform: translateX(-250px);
     width: 0;
     transition: all 0.4s;
     margin-right: 0;
   }
+
+  #sidebar * {
+      visibility: hidden;
+      opacity: 0;
+  }
+
   
   #sidebar .navbar-header ,
   #sidebar-lg .navbar-header-lg {
-    background-color: #bcb9aa;
-    padding: 3rem ;
-    font-size: 1.8rem;
+    padding: 1.6rem;
+    background: #e5b200;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 1px;
   }
 
   
@@ -35,6 +43,7 @@
     padding: 0;
     margin-bottom: -1px;
     margin-right: -1px;
+    margin-left: 10px;
 
   }
 
@@ -46,19 +55,34 @@
     display: inline-block;
     position: relative;    
   }
-  
-  #main-content .check-box .line,
-  #nav-icon .checkbox-nav-icon .line {
-    width: 20px;
-    height: 2px;
-    background-color: #212121;
-    margin: 4px 0;
-    display: block;
+
+  .sidebar-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #ffcc19;
+    padding: 7px 11px;
+    border-radius: 4px;
+    border: 2px solid  transparent;
+    transition: all 0.3s;
+  }
+  .sidebar-icon:active {
+    border: 2px solid  #17a2b8;
   }
 
-  #main-content .check-box .line {
-    background-color: #888;
+  
+  .navbar-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #343a40;
+    padding: 7px 11px;
+    border-radius: 4px;
+    border: 2px solid  transparent;
+    transition: all 0.3s;
   }
+  .navbar-icon:active {
+    border: 2px solid  #17a2b8;
+  }
+  
   
   #checkbox,
   #checkbox-nav {
@@ -66,10 +90,17 @@
   }
   
   #checkbox:checked ~ #sidebar {
-    width: 220px;
+    width: 250px;
     transform: translateX(0);
-    margin-right: 45px;
+    margin-right: 40px;
   }
+
+  #checkbox:checked ~ #sidebar * {
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.6s;
+}
+
 
   
   
@@ -82,6 +113,8 @@
     #main-content{
         display: inline-block;
         align-self: flex-start;
+        margin-top: 10px;
+        margin-bottom: -20px;
     }
 
     
@@ -92,7 +125,6 @@
 
     #sidebar .navbar-header ,
     #sidebar-lg .navbar-header-lg {
-    background-color: #bcb9aa;
     padding: 1.5rem ;
     font-size: 1rem;
   }

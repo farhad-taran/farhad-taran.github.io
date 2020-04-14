@@ -1,14 +1,32 @@
-import React from 'react'
+import React,{Component} from 'react'
 import "./Repo.css"
 import {NavLink} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 
 
-const repo = props => {
+class Repo extends Component {
 
-    return(
-        <NavLink className="repo" to={`/repo/${props.id}`} onClick={props.hideSideBar} > {props.name}</NavLink>
-    )
+
+    scrollToTop = ()=> {
+        window.scrollTo(0,0);
+        this.props.hideSidebar()
+    }
+
+    render(){
+        return(
+            <NavLink  className="repo" to={`/repo/${this.props.id}`} activeClassName="repo-active" onClick={this.scrollToTop} > {this.props.name}</NavLink>
+        )
+    }
+
+    
 }
 
-export default repo
+const mapDispatchToProps = dispatch => {
+    return {
+        hideSidebar: ()=> dispatch({type:'hide'})
+    }
+}
+
+
+export default connect(null,mapDispatchToProps)(Repo)

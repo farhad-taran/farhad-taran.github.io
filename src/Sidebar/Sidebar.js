@@ -1,15 +1,16 @@
 import React from 'react'
 import ReposWrapper from './ReposWrapper'
 import './Sidebar.css'
-
-const sidebar = ()=> {
+import {connect} from 'react-redux'
+ 
+const sidebar = props=> {
     return(
         <div>
-        <input type="checkbox" name="checkbox" id="checkbox"></input>
+        <input type="checkbox" checked={props.showSidebar}  name="checkbox" id="checkbox"></input>
         {/* {React.createElement('input',{type: 'checkbox',  defaultChecked: false, name:"checkbox", id:"checkbox"})} */}
         <aside id="sidebar">
               <header className="navbar-header">
-                  <p className="myRepos" >Repositories</p>
+                  <h1 className="myRepos" >Repositories</h1>
               </header>
               <main className="navbar-body">
                   <ReposWrapper scrollable="1" />
@@ -28,4 +29,10 @@ const sidebar = ()=> {
     )
 }
 
-export default sidebar
+const mapStateToProps = state => {
+    return {
+        showSidebar:state.showSidebar
+    }
+}
+
+export default connect(mapStateToProps)(sidebar)

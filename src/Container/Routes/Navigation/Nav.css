@@ -1,3 +1,7 @@
+/* the #main-content icon is for the sidebar toggle icon -- you can find the styling of it in the sidebar.css component*/
+
+
+
 
 .navbar {
     width: 100%;
@@ -14,14 +18,15 @@
 
 .nav-link {
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin: 1rem;
-    color: #aaa;
+    color: #999;
+    font-weight: 300;
     
 }    
 
 .nav-link:visited {
-    color: #aaa;
+    color: #999;
 }
 
 .nav-link:hover {
@@ -53,15 +58,26 @@
     visibility: visible;
 }
 
+.nav-links-lg {
+    padding: 30px 5px 10px 0;
+}
+
+.nav-links {
+    opacity: 0;
+    transform: scaleY(0);
+    visibility: hidden;
+    height: 0;
+}
+
 .nav-links {
     display: none;
 }
 
 #checkbox-nav:checked ~ .navbar .nav-links {
-    opacity: 0;
-    transform: scaleY(0);
-    visibility: hidden;
-    height: 0;
+    opacity: 1;
+    transform: scaleY(1);
+    visibility: visible;
+    height: 100%;
 
   }
 
@@ -87,7 +103,7 @@
     .navbar {
         flex-direction: column;
         align-items: flex-end;
-        width: 65vw;
+        width: 85vw;
     }
 
 
