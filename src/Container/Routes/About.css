@@ -2,7 +2,6 @@
     margin: 3rem 1rem;
     min-height: 85vh;
     width: 75vw;
-    background: #fafafa; 
 }
 
 .img {
@@ -23,8 +22,6 @@
     top: 28%;
     right: -3.5%;
     font-size: 1.7rem;
-    color: #999;
-
 }
 
 .profission {
@@ -32,7 +29,6 @@
     top: 51%;
     right: 3.5%;
     font-size: 1rem;
-    color: #999;
 }
 
 .about-text {
@@ -41,14 +37,11 @@
     line-height: 1.9;
     margin-left: 1rem;
     padding-right: 1.5rem;
-    color: #999;
 }
 
 
 
 @media only screen and (max-width:768px) {
-
-
     .about-text{
         padding: 0 ;
         font-size: 16px;
@@ -82,5 +75,4 @@
     .cite {
         margin-bottom: 5rem;
     }
-
 }

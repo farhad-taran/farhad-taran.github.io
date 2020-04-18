@@ -6,9 +6,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background: #fafafa;
-
-
 }
 
 
@@ -17,8 +14,6 @@
     .container {
         width: 70vw;
         margin: 1rem auto;
-    }
-
-    
+    }    
 }
 

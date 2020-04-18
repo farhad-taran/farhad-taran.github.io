@@ -1,7 +1,7 @@
 
 
 #sidebar,#sidebar-lg {
-    background: #ffcc19;
+    background: #181818;
     color: #6b6b6b;
     width: 250px;
     text-align: center;
@@ -26,7 +26,7 @@
   #sidebar .navbar-header ,
   #sidebar-lg .navbar-header-lg {
     padding: 1.6rem;
-    background: #e5b200;
+    background: #000000;
     font-size: 1.6rem;
     font-weight: 600;
     letter-spacing: 1px;
