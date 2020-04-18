@@ -12,45 +12,45 @@ class ReposWrapper extends Component {
     state={
         page:1,
         perPage:30,
-        repos:[],
-        totalList:[],
         hasMore:true,
+        reposList:[],
         userName:'Colt'
     }
 
-    
-    
-    componentDidMount(){
-        const {page,perPage} = this.state;
-        axios.get(`https://api.github.com/users/${this.state.userName}/repos?page=${page}&per_page=${perPage}&sort=updated`)
-        .then(response => {
-            this.setState({repos:response.data,totalList:response.data},()=> {
-                this.props.storeRepos(this.state.totalList)
-            });
-            axios.get(`https://api.github.com/users/${this.state.userName}/gists?page=${page}&per_page=${perPage}`)
-            .then(res => {
-                this.setState({totalList:this.state.totalList.concat(...res.data)},()=> {
-                    this.props.storeRepos(this.state.totalList)
-                })
 
-            })
+    sortResults = arr => {
+        const sorted = arr.sort((a,b) => {
+           return new Date(b.updated_at) - new Date(a.updated_at);
+        });
 
-        })
-
-        
-        
+        return sorted
     }
 
+    totalList = ()=> {
+        const dataArr = this.state.reposList.map(el => {
+            return {
+                name: el.description,
+                id: el.id,
+                url: el.url,
+                html_url: el.html_url,
+                created_at: el.created_at,
+                updated_at: el.updated_at,
+                isRepo: el.name ? true : false,
+                isGist: el.name ? false : true,
+                files: el.name ? null : el.files,
+                readMe: el.name ? 
+                `https://raw.githubusercontent.com/${this.state.userName}/${el.name}/master/README.md` : 
+                `https://gist.githubusercontent.com/${this.state.userName}/${el.id}/raw/README.md`
+            }
+        })
 
+        return dataArr
+    }
 
-    loadNext = ()=> {
-        this.setState(prevState=> ({page:prevState.page +1}),()=> {
-            axios.get(`https://api.github.com/users/${this.state.userName}/repos?page=${this.state.page}&per_page=${this.state.perPage}&sort=updated`,
-            {
-                headers:{
-                    'Authorization':'46a9a67a3916e43d88af94d6f817d4c8c87a6ddc'
-                }
-            })
+    fetchLists = ()=> {
+            const {page,perPage,userName} = this.state;
+            const config = {headers:{'Authorization':'46a9a67a3916e43d88af94d6f817d4c8c87a6ddc'}}
+            axios.get(`https://api.github.com/users/${userName}/repos?page=${page}&per_page=${perPage}&sort=updated`,config)
             .then(response => {
                 if(response.data.length == 0){
                     this.setState({
@@ -58,45 +58,38 @@ class ReposWrapper extends Component {
                     })
                     return
                 }
-                this.setState({
-                    repos:this.state.repos.concat(...response.data),
-                    totalList:this.state.totalList.concat(...response.data)
-                })
-                this.props.storeRepos(this.state.totalList);
-                console.log(this.state.page);
-                axios.get(`https://api.github.com/users/${this.state.userName}/gists?page=${this.state.page}&per_page=${this.state.perPage}`,
-                {
-                    headers:{
-                        'Authorization':'46a9a67a3916e43d88af94d6f817d4c8c87a6ddc',
-                    }
-                })
+                axios.get(`https://api.github.com/users/${userName}/gists?page=${page}&per_page=${perPage}`,config)
                 .then(res => {
-                    this.setState({
-                        totalList:this.state.totalList.concat(...res.data)
+                    const sortedArr = this.sortResults([...response.data,...res.data]);
+                    this.setState({reposList:this.state.reposList.concat(...sortedArr)},()=>{
+                        this.props.storeRepos(this.totalList());
                     })
-                    this.props.storeRepos(this.state.totalList);
+                    
                 })
             })
-        })
     }
 
-    
+
+    componentDidMount(){
+        this.fetchLists();
+    }
+
+
+    loadNext = ()=> {
+        this.setState(prevState=> ({page:prevState.page +1}),this.fetchLists);
+    }
+
 
     render(){
-
-        const renderRepos = this.state.totalList.map(el => {
-           return <Repo name={el.name?el.name : el.description} key={el.id} id={el.id} url={el.url} />
-
-
-           
+        const renderRepos = this.props.totalList.map(el => {
+           return <Repo name={el.name} key={el.id} id={el.id} url={el.url} />
         })
 
         return(
             <div className="reposWrapper" id={`target${this.props.scrollable}`}>
                 <InfiniteScroll 
-                dataLength={this.state.totalList.length}
+                dataLength={this.props.totalList.length}
                 next={this.loadNext}
-                // scrollableTarget={`target${this.props.scrollable}`}
                 hasMore={this.state.hasMore}
                 loader={<LoadingSpinner/>}>
                      {renderRepos} 
@@ -104,6 +97,12 @@ class ReposWrapper extends Component {
             </div>
             
         )
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        totalList:state.fetchedData.reposList
     }
 }
 
@@ -115,4 +114,4 @@ const mapDispatchToProps = dispatch => {
     
 }
 
-export default connect(null,mapDispatchToProps)(ReposWrapper)
+export default connect(mapStateToProps,mapDispatchToProps)(ReposWrapper)

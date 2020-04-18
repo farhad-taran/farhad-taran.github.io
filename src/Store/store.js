@@ -1,15 +1,21 @@
 import {createStore} from 'redux'
 
 const initialState = {
-    repos:[],
-    showSidebar:false
+    fetchedData:{
+        reposList:[]
+    },
+    showSidebar:false,
+    showSpinner:true,
+    showMarkDown:false
 }
 
 const reducer = (state=initialState,action)=>{
     if(action.type == 'repos'){
         return {
             ...state,
-            repos:action.payload
+            fetchedData:{
+                reposList: action.payload
+            }
         }
         
     }
@@ -33,7 +39,35 @@ const reducer = (state=initialState,action)=>{
             showSidebar:false
         }
     }
+
+    if(action.type == 'showSpinner'){
+        return {
+            ...state,
+            showSpinner:true
+        }
+    }
+
+    if(action.type == 'hideSpinner'){
+        return {
+            ...state,
+            showSpinner:false
+        }
+    }
     
+    if(action.type == 'showMarkDown'){
+        return {
+            ...state,
+            showMarkDown:true
+        }
+    }
+    
+    if(action.type == 'hideMarkDown'){
+        return {
+            ...state,
+            showMarkDown:false
+        }
+    }
+
     return state
     
 }

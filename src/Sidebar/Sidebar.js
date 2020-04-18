@@ -1,11 +1,11 @@
-import React from 'react'
+import React,{Fragment} from 'react'
 import ReposWrapper from './ReposWrapper'
 import './Sidebar.css'
 import {connect} from 'react-redux'
  
 const sidebar = props=> {
     return(
-        <div>
+        <Fragment>
         <input type="checkbox" checked={props.showSidebar}  name="checkbox" id="checkbox"></input>
         {/* {React.createElement('input',{type: 'checkbox',  defaultChecked: false, name:"checkbox", id:"checkbox"})} */}
         <aside id="sidebar">
@@ -25,7 +25,7 @@ const sidebar = props=> {
                   <ReposWrapper scrollabe="2" />
               </main>
           </aside>
-        </div>
+        </Fragment>
     )
 }
 

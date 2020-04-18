@@ -1,10 +1,9 @@
 import React,{Component} from 'react'
-import ReactMarkdown from 'react-markdown'
 import axios from'axios'
 import './RepoRoute.css'
 import {connect} from 'react-redux'
-
-
+import Spinner from './Spinner'
+import Markdown from './Markdown'
 
 
 
@@ -12,49 +11,60 @@ class Repo extends Component {
 
     state={
         readMe:'',
-        repos:this.props.newState.repos,
+        repos:this.props.repos,
         src:'',
         created:'',
         updated:'',
         userName:'Colt'  
     }
 
-    componentDidMount(){
-        if(this.props.newState.repos.length == 0 ){
-            this.props.history.replace('/about')
-        }
+    fetchRepo = props => {
+        const fetchedRepo = this.state.repos.filter(el => {
+            return el.id == props.match.params.id
+         })[0];
 
-        else {
-            const fetchedRepo = this.state.repos.filter(el => {
-                return el.id == this.props.match.params.id
-             })[0];
-             this.setState({
-                 src:fetchedRepo.html_url,
-                 created:fetchedRepo.created_at,
-                 updated:fetchedRepo.updated_at,
-                 
-             })
+         this.setState({
+            src:fetchedRepo.html_url,
+            created:fetchedRepo.created_at,
+            updated:fetchedRepo.updated_at,
+            
+        })
 
-             if(fetchedRepo.name){
-                axios.get(`${fetchedRepo.url}/readme`)
-                .then(response => {
-                    axios.get(`${response.data.download_url}`)
-                    .then(res => {
-                        this.setState({
-                            readMe:res.data,
-                        })
+        if(fetchedRepo.isRepo){
+            axios.get(`${fetchedRepo.url}/readme`)
+            .then(response => {
+                axios.get(`${response.data.download_url}`)
+                .then(res => {
+                    this.props.hideSpinner();
+                    this.props.showMarkDown();
+                    this.setState({
+                        readMe:res.data,
                     })
-                    
                 })
-             }
-             else {
-                 const keysArr = Object.keys(fetchedRepo.files)
-                 keysArr.forEach(key => {
-                    
+                
+            })
+         }
+
+    }
+
+    fetchGist = props => {
+        const fetchedRepo = this.state.repos.filter(el => {
+            return el.id == props.match.params.id
+         })[0];
+
+         this.setState({
+            src:fetchedRepo.html_url,
+            created:fetchedRepo.created_at,
+            updated:fetchedRepo.updated_at,
+            
+        })
+        if(fetchedRepo.isGist){
+            Object.keys(fetchedRepo.files).forEach(key => {                    
                         if(key.includes('.md')){
-                        //    axios.get(`${fetchedRepo.files[key].raw_url}`)
-                            axios.get(`https://gist.githubusercontent.com/${this.state.userName}/${fetchedRepo.id}/raw/${key}`)                            
+                            axios.get(fetchedRepo.files[key].raw_url)                            
                            .then(res => {
+                               this.props.hideSpinner();
+                               this.props.showMarkDown();
                                this.setState({
                                    readMe:res.data
                                })
@@ -66,63 +76,25 @@ class Repo extends Component {
                         }
                     
                  })
-                
-             }
+        }
+    }
 
+    componentDidMount(){
+        if(this.props.repos.length == 0 ){
+            this.props.history.replace('/about')
+        }
+
+        else {
+            this.fetchRepo(this.props)
+            this.fetchGist(this.props)
         }
     
     }
 
     componentWillReceiveProps(nextProps){
-        const fetchedRepo = this.state.repos.filter(el => {
-            return el.id == nextProps.match.params.id
-         })[0]
-         if(!fetchedRepo) return
-         this.setState({
-            src:fetchedRepo.html_url,
-            created:fetchedRepo.created_at,
-            updated:fetchedRepo.updated_at,
-        })
 
-         if(fetchedRepo.name){
-            
-            axios.get(`${fetchedRepo.url}/readme`)
-
-            .then(response => {
-                axios.get(`${response.data.download_url}`)
-                    .then(res => {
-                        this.setState({
-                            readMe:res.data,
-                            created:fetchedRepo.created_at,
-                            updated:fetchedRepo.updated_at,
-                        })
-                    })       
-            })  
-         }
-
-         else {
-            this.setState({
-                src:fetchedRepo.html_url
-            })
-            const keysArr = Object.keys(fetchedRepo.files)
-            keysArr.forEach(key => {
-               
-                   if(key.includes('.md')){
-                    //   axios.get(`${fetchedRepo.files[key].raw_url}`)
-                        axios.get(`https://gist.githubusercontent.com/${this.state.userName}/${fetchedRepo.id}/raw/${key}`) 
-                      .then(res => {
-                          this.setState({
-                              readMe:res.data
-                          })
-                      })
-                       
-                   }
-                   else {
-                       return
-                   }
-               
-            })
-         }
+        this.fetchRepo(nextProps)
+        this.fetchGist(nextProps)
                
      }
 
@@ -130,11 +102,10 @@ class Repo extends Component {
 
     render(){
         
-
         return(
             <div className="repoRoute">
-                <ReactMarkdown source={this.state.readMe} escapeHtml={true} />
-            
+                <Spinner />
+                <Markdown source={this.state.readMe} />
                 <p className="link-wrap"> created at {this.state.created} / updated at {this.state.updated} <br/> 
                 for more information <a target="_blank" href={this.state.src}  className="link" >Click Here</a> </p>
             </div>
@@ -145,8 +116,15 @@ class Repo extends Component {
 const mapStateToProps = state => {
     
     return {
-        newState:state,
+        repos:state.fetchedData.reposList,
     }
 }
 
-export default connect(mapStateToProps,null)(Repo)
+const mapDispatchToProps = dispatch => {
+    return {
+        hideSpinner: ()=> dispatch({type:'hideSpinner'}),
+        showMarkDown: ()=> dispatch({type:'showMarkDown'})
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Repo)

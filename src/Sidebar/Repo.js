@@ -10,7 +10,9 @@ class Repo extends Component {
 
     scrollToTop = ()=> {
         window.scrollTo(0,0);
-        this.props.hideSidebar()
+        this.props.hideSidebar();
+        this.props.showSpinner();
+        this.props.clearReadMe();
     }
 
     render(){
@@ -24,7 +26,9 @@ class Repo extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        hideSidebar: ()=> dispatch({type:'hide'})
+        hideSidebar: ()=> dispatch({type:'hide'}),
+        showSpinner: ()=> dispatch({type:'showSpinner'}),
+        clearReadMe: ()=> dispatch({type:'hideMarkDown'})
     }
 }
 
