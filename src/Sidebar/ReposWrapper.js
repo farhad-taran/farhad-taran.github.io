@@ -14,7 +14,7 @@ class ReposWrapper extends Component {
         perPage:30,
         hasMore:true,
         reposList:[],
-        userName:'Colt'
+        userName:'farhad-taran'
     }
 
 

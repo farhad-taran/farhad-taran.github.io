@@ -4,7 +4,7 @@ import './RepoRoute.css'
 import {connect} from 'react-redux'
 import Spinner from './Spinner'
 import ReactMarkdown from 'react-markdown'
-
+import CodeBlock from './CodeBlock'
 
 
 class Repo extends Component {
@@ -98,7 +98,7 @@ class Repo extends Component {
         return(
             <div className="repoRoute" style={style}>
                 <Spinner />
-                <ReactMarkdown source={this.state.readMe} escapeHtml={true} />
+                <ReactMarkdown source={this.state.readMe} escapeHtml={true} renderers={{ code: CodeBlock }} />
                 <p className="link-wrap"> created at {this.state.created} / updated at {this.state.updated} <br/> 
                 for more information <a target="_blank" href={this.state.src}  className="link" >Click Here</a> </p>
             </div>
