@@ -1,6 +1,6 @@
 .repo {
     font-weight: 300;
-    padding: 1rem 1rem 1rem 1rem;
+    padding: 1rem;
     width: 250px;
     text-decoration: none;
     display: inline-block;
@@ -9,16 +9,18 @@
     color: #6b6b6b;
     font-weight: 400;
     overflow-x: hidden;
+    border-top: 1px #343434 solid;
 }
 
 
 .repo:hover {
     background-color: #6b6b6b;
-    color: #ffcc19;;
+    color: #181818;;
 }
 
 .repo-active {
-    background: #e5b200;    
+    background: #0366D5;
+    
 }
 
 
