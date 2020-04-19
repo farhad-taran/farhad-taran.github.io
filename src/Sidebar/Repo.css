@@ -1,27 +1,22 @@
 .repo {
-    font-weight: 300;
     padding: 1rem;
     width: 250px;
     text-decoration: none;
     display: inline-block;
-    font-size: 17px;
+    font-size: 1rem;
     transition: all 0.25s;
-    color: #6b6b6b;
-    font-weight: 400;
     overflow-x: hidden;
-    border-top: 1px #343434 solid;
     margin: -3px 0 -3px 0;
+    color: #6b6b6b;
 }
 
 
 .repo:hover {
-    background-color: #6b6b6b;
-    color: #181818;
+    background-color: #e5b200;
+    color: #212529;
 }
 
 .repo-active {
-    background: #6b6b6b;
-    color: #181818 !important;
+    background: #e5b200;
+    color: #212529;
 }
-
-
