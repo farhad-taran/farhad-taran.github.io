@@ -10,17 +10,18 @@
     font-weight: 400;
     overflow-x: hidden;
     border-top: 1px #343434 solid;
+    margin: -3px 0 -3px 0;
 }
 
 
 .repo:hover {
     background-color: #6b6b6b;
-    color: #181818;;
+    color: #181818;
 }
 
 .repo-active {
-    background: #0366D5;
-    
+    background: #6b6b6b;
+    color: #181818 !important;
 }
 
 
