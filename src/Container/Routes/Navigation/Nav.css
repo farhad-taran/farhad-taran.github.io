@@ -10,8 +10,6 @@
     box-shadow: 1px 1px 3px rgba(1, 1, 1, 0.1);
     border-radius: 4px;
     background-color:#181818;
-    padding-left: 5px;
-    padding-top: 2px;
     transition: all 0.3s;
     border: 1px #343434 solid;
 }
