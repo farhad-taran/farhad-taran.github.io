@@ -82,7 +82,7 @@ class ReposWrapper extends Component {
 
     render(){
         const renderRepos = this.props.totalList.map(el => {
-           return <Repo name={el.name} key={el.id} id={el.id} url={el.url} />
+           return <Repo name={el.name} key={el.id} id={el.id} url={el.url} created_at={el.created_at} />
         })
 
         return(

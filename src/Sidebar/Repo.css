@@ -12,11 +12,11 @@
 
 
 .repo:hover {
-    background-color: #e5b200;
-    color: #212529;
+    background-color: #6b6b6b;
+    color: #ffcc19;
 }
 
 .repo-active {
-    background: #e5b200;
-    color: #212529;
+    background: #6b6b6b;
+    color: #ffcc19;
 }
