@@ -10,7 +10,7 @@ const sidebar = props=> {
         {/* {React.createElement('input',{type: 'checkbox',  defaultChecked: false, name:"checkbox", id:"checkbox"})} */}
         <aside id="sidebar">
               <header className="navbar-header">
-                  <h1 className="myRepos" >Repositories</h1>
+                  <h2 className="myRepos" >-------</h2>
               </header>
               <main className="navbar-body">
                   <ReposWrapper scrollable="1" />
@@ -19,7 +19,7 @@ const sidebar = props=> {
           
         <aside id="sidebar-lg">
               <header className="navbar-header-lg">
-                  <p className="myRepos-lg" >Repositories</p>
+                  <p className="myRepos-lg" >-------</p>
               </header>
               <main className="navbar-body-lg">
                   <ReposWrapper scrollabe="2" />

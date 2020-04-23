@@ -19,7 +19,8 @@ class Repo extends Component {
         return(
             <NavLink  className="repo" to={`/repo/${this.props.id}`} activeClassName="repo-active" onClick={this.scrollToTop} > {this.props.name}            
             <div>
-                <span> {this.props.created_at} </span>
+                <span id="postIcon"></span>
+                <span id="createdDate"> {this.props.created_at} </span>
             </div>
             </NavLink>
         )

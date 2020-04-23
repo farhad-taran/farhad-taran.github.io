@@ -99,8 +99,12 @@ class Repo extends Component {
             <div className="repoRoute" style={style}>
                 <Spinner />
                 <ReactMarkdown source={this.state.readMe} escapeHtml={true} renderers={{ code: CodeBlock }} />
-                <p className="link-wrap"> created at {this.state.created} / updated at {this.state.updated} <br/> 
-                for more information <a target="_blank" href={this.state.src}  className="link" >Click Here</a> </p>
+
+                <div className="details">
+                    <span className="postDates"> Created at: {this.state.created} * Updated at: {this.state.updated} <br/> </span>
+                    <a target="_blank" href={this.state.src}  className="sourceLink" >Source</a>
+                </div>
+
             </div>
         )
     }

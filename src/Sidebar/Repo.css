@@ -17,6 +17,11 @@
 }
 
 .repo-active {
-    background: #6b6b6b;
-    color: #ffcc19;
+    background: #e5b200;
+    color: #838383;
+}
+
+#createdDate{
+    float: right;
+    font-size: 0.6em;
 }
