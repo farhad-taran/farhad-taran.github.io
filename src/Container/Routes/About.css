@@ -15,6 +15,7 @@
     position: relative;
     margin-bottom: 2rem;
     float: left;
+    width: -webkit-fill-available;
 }
 
 .details{

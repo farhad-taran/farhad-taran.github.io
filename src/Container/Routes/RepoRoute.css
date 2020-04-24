@@ -128,7 +128,9 @@
 }
 
 .repoRoute h1,h2,h3,h4{
-  margin: 15px 0px 15px 0px;
+  margin: 15px 0px 10px 0px;
+  border-bottom: 1px solid #eaecef;
+  color: #111;
 }
 
 .repoRoute p {
@@ -159,16 +161,8 @@
 .repoRoute li + li {
   margin-top: 0.25em; }
 
-
-
 .repoRoute a:visited {
   color: #0366d6; }
-
-.repoRoute h1, .repoRoute h2, .repoRoute h3 {
-  border-bottom: 1px solid #eaecef;
-  color: #111;
-  /* Darker */ }
-
 
 .link,link:visited {
     color: #000;

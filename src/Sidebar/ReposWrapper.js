@@ -56,9 +56,24 @@ class ReposWrapper extends Component {
                 }
                 axios.get(`https://api.github.com/users/${userName}/gists?page=${page}&per_page=${perPage}`,config)
                 .then(res => {
+                    
+                    var topPost = { 
+                        created_at: new Date().toLocaleDateString(),
+                        fetchedContent: null,
+                        files: undefined,
+                        html_url: "https://github.com/farhad-taran/farhad-taran.github.io",
+                        id: 254476713,
+                        name: "My blog and portfolio built around Github and Gists ",
+                        postType: "github",
+                        readMe: "https://raw.githubusercontent.com/farhad-taran/farhad-taran.github.io/master/README.md",
+                        updated_at: "4/18/2020",
+                        url: "https://api.github.com/repos/farhad-taran/farhad-taran.github.io",
+                    };
+
                     var gists = res.data.map(el => this.mapPost(el,postTypes.gist));
                     var githubs = response.data.map(el => this.mapPost(el,postTypes.github));
-                    const sortedArr = this.sortResults([...gists,...githubs]);
+                    var replacedPosts = [...gists,...githubs].map(el => (el.id === topPost.id) ? topPost : el)
+                    const sortedArr = this.sortResults(replacedPosts);
                     var allPosts = this.state.reposList.concat(sortedArr);
                     this.setState({reposList: allPosts},()=>{
                         this.props.storeRepos(allPosts);
