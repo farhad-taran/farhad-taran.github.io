@@ -42,13 +42,13 @@ class Nav extends Component {
                     </main>
                     <div className="nav-links">
                         <NavLink className="nav-link" to="/about" onClick={this.hideNav}> About </NavLink>
-                        <NavLink className="nav-link" to="/contact" onClick={this.hideNav}> Contact </NavLink>
-                        <NavLink className="nav-link" to="/repo" onClick={this.hideNav}> Repository </NavLink>
+                        {/* <NavLink className="nav-link" to="/contact" onClick={this.hideNav}> Contact </NavLink>
+                        <NavLink className="nav-link" to="/repo" onClick={this.hideNav}> Repository </NavLink> */}
                     </div>
                     <div className="nav-links-lg">
                         <NavLink className="nav-link" to="/about"> About </NavLink>
-                        <NavLink className="nav-link" to="/contact"> Contact </NavLink>
-                        <NavLink className="nav-link" to="/repo"> Repository </NavLink>
+                        {/* <NavLink className="nav-link" to="/contact"> Contact </NavLink>
+                        <NavLink className="nav-link" to="/repo"> Repository </NavLink> */}
                     </div>
                     
                     

@@ -33,10 +33,10 @@ class ReposWrapper extends Component {
             id: el.id,
             url: el.url,
             html_url: el.html_url,
-            created_at: el.created_at,
-            updated_at: el.updated_at,
+            created_at: new Date(el.created_at).toLocaleDateString(),
+            updated_at: new Date(el.updated_at).toLocaleDateString(),
             postType: postType,
-            files: el.name ? null : el.files,
+            files: el.files,
             readMe: postType === postTypes.gist ?
             `https://gist.githubusercontent.com/${this.state.userName}/${el.id}/raw/README.md` :
             `https://raw.githubusercontent.com/${this.state.userName}/${el.name}/master/README.md`              
@@ -56,7 +56,6 @@ class ReposWrapper extends Component {
                 }
                 axios.get(`https://api.github.com/users/${userName}/gists?page=${page}&per_page=${perPage}`,config)
                 .then(res => {
-                    debugger
                     var gists = res.data.map(el => this.mapPost(el,postTypes.gist));
                     var githubs = response.data.map(el => this.mapPost(el,postTypes.github));
                     const sortedArr = this.sortResults([...gists,...githubs]);

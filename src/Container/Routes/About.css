@@ -1,78 +1,42 @@
 .about {
-    margin: 3rem 1rem;
+    margin-top: 3em;
     min-height: 85vh;
-    width: 75vw;
 }
 
 .img {
     width: 150px;
-    height: 150px;
     border-radius: 50%;
     margin-left: 5px;
+    margin-right: 10px;
+    float: left;
 }
 
 .cite {
     position: relative;
-    width: 21rem;
     margin-bottom: 2rem;
+    float: left;
+}
+
+.details{
+    margin-top: 10px;
 }
 
 .person-name {
-    position: absolute;
-    top: 28%;
-    right: -3.5%;
     font-size: 1.7rem;
 }
 
 .profission {
-    position: absolute;
-    top: 51%;
-    right: 3.5%;
     font-size: 1rem;
 }
 
 .about-text {
-    margin-top: 3rem;
     font-size: 1rem;
     line-height: 1.9;
-    margin-left: 1rem;
-    padding-right: 1.5rem;
+    float: left;
 }
 
-
-
-@media only screen and (max-width:768px) {
-    .about-text{
-        padding: 0 ;
-        font-size: 16px;
-        line-height: 1.6;
-
-    }
-
-    .about {
-        margin-left: 0;
-        padding-left: 5 px;
-        min-height: 85vh;
-        width: 75vw;
-
-    }
-
-        
-    .person-name {
-        position: absolute;
-        top: 100%;
-        right: 42%;
-        font-size: 1.7rem;
-    }
-
-    .profission {
-        position: absolute;
-        top: 122%;
-        right: 49.5%;
-        font-size: 1rem;
-    }
-
-    .cite {
-        margin-bottom: 5rem;
-    }
+.books{
+    list-style-type: none;
+    margin-left: 20px;
+    padding: 0;
 }

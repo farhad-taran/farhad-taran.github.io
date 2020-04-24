@@ -11,30 +11,41 @@ class Repo extends Component {
 
     state = {
         showMarkDown: false,
-        fetchedContents:[],
         repos:this.props.repos,
         src:'',
         created:'',
-        updated:'',  
+        updated:'',
+        name: ''  
     }
 
     fetchPost = props => {
+        
         const fetchedRepo = this.state.repos.filter(el => {
             return el.id == props.match.params.id
-         })[0];
-       
+        })[0];       
 
         this.setState({
+            name: fetchedRepo.name,
             src:fetchedRepo.html_url,
             created:fetchedRepo.created_at,
             updated:fetchedRepo.updated_at,
             showMarkDown: false,
         })
 
+        if(fetchedRepo.fetchedContent != null){
+            this.props.hideSpinner();
+            this.setState({
+                fetchedContent:fetchedRepo.fetchedContent,
+                showMarkDown: true
+            }) 
+            return;
+        }
+
         if(fetchedRepo.postType === postTypes.github){
             axios.get(fetchedRepo.readMe)
             .then(res => {
                 this.props.hideSpinner();
+                fetchedRepo.fetchedContent = res.data
                 this.setState({
                     fetchedContent:res.data,
                     showMarkDown: true
@@ -48,6 +59,7 @@ class Repo extends Component {
                             axios.get(fetchedRepo.files[key].raw_url)                            
                            .then(res => {
                                this.props.hideSpinner();
+                               fetchedRepo.fetchedContent = res.data
                                this.setState({
                                    fetchedContent:res.data,
                                    showMarkDown: true
@@ -77,10 +89,11 @@ class Repo extends Component {
         return(
             <div className="repoRoute" style={style}>
                 <Spinner />
+                {this.state.fetchedContent && !this.state.fetchedContent.startsWith('#') && <h3>{this.state.name}</h3>}
                 <ReactMarkdown source={this.state.fetchedContent} escapeHtml={true} renderers={{ code: CodeBlock }} />
 
-                <div className="details">
-                    <span className="postDates"> Created at: {this.state.created} * Updated at: {this.state.updated} <br/> </span>
+                <div className="repo-details">
+                    <span className="postDates"> Created at: {this.state.created}</span>
                     <a target="_blank" href={this.state.src}  className="sourceLink" >Source</a>
                 </div>
 
