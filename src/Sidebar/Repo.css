@@ -18,10 +18,19 @@
 
 .repo-active {
     background: #e5b200;
-    color: #838383;
+    color: #212529;
+}
+
+#postIcon{
+    margin-bottom: 10px;
 }
 
 #createdDate{
+    margin-bottom: 10px;
     float: right;
     font-size: 0.6em;
+}
+
+#description{
+    float: left;
 }
