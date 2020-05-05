@@ -63,7 +63,7 @@ class ReposWrapper extends Component {
                         files: undefined,
                         html_url: "https://github.com/farhad-taran/farhad-taran.github.io",
                         id: 254476713,
-                        name: "My blog and portfolio built around Github and Gists ",
+                        name: "How this blog was built around Github and Gists and using React, Redux",
                         postType: "github",
                         readMe: "https://raw.githubusercontent.com/farhad-taran/farhad-taran.github.io/master/README.md",
                         updated_at: "4/18/2020",

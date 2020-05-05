@@ -10,11 +10,3 @@
 
 
 }
-
-@media only screen and (max-width:768px) {
-    .contact {
-        width: 75vw;
-        min-height: 85vh;
-        padding: 0;
-    }
-}
