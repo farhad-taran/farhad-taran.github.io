@@ -1,25 +1,36 @@
 .repo {
-    font-weight: 300;
-    padding: 1rem 0 1rem 1rem;
+    padding: 1rem;
     width: 250px;
     text-decoration: none;
     display: inline-block;
-    font-size: 17px;
+    font-size: 1rem;
     transition: all 0.25s;
-    color: #6b6b6b;
-    font-weight: 400;
     overflow-x: hidden;
+    margin: -3px 0 -3px 0;
+    color: #6b6b6b;
 }
 
 
 .repo:hover {
     background-color: #6b6b6b;
-    color: #ffcc19;;
+    color: #ffcc19;
 }
 
 .repo-active {
     background: #e5b200;
-    
+    color: #212529;
 }
 
+#postIcon{
+    margin-bottom: 10px;
+}
 
+#createdDate{
+    margin-bottom: 10px;
+    float: right;
+    font-size: 0.6em;
+}
+
+#description{
+    float: left;
+}

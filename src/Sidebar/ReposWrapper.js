@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import axios from 'axios'
 import LoadingSpinner from './LoadingSpinner'
 import {connect} from 'react-redux'
-
+import {postTypes} from '../constants'
 
 
 class ReposWrapper extends Component {
@@ -14,37 +14,33 @@ class ReposWrapper extends Component {
         perPage:30,
         hasMore:true,
         reposList:[],
-        userName:'Colt'
+        userName:'farhad-taran'
     }
 
 
     sortResults = arr => {
         const sorted = arr.sort((a,b) => {
-           return new Date(b.updated_at) - new Date(a.updated_at);
+           return new Date(b.created_at) - new Date(a.created_at);
         });
 
         return sorted
     }
 
-    totalList = ()=> {
-        const dataArr = this.state.reposList.map(el => {
-            return {
-                name: el.description,
-                id: el.id,
-                url: el.url,
-                html_url: el.html_url,
-                created_at: el.created_at,
-                updated_at: el.updated_at,
-                isRepo: el.name ? true : false,
-                isGist: el.name ? false : true,
-                files: el.name ? null : el.files,
-                readMe: el.name ? 
-                `https://raw.githubusercontent.com/${this.state.userName}/${el.name}/master/README.md` : 
-                `https://gist.githubusercontent.com/${this.state.userName}/${el.id}/raw/README.md`
-            }
-        })
-
-        return dataArr
+    mapPost = (el, postType) => {
+        return {
+            name: el.description,
+            fetchedContent: null,
+            id: el.id,
+            url: el.url,
+            html_url: el.html_url,
+            created_at: new Date(el.created_at).toLocaleDateString(),
+            updated_at: new Date(el.updated_at).toLocaleDateString(),
+            postType: postType,
+            files: el.files,
+            readMe: postType === postTypes.gist ?
+            `https://gist.githubusercontent.com/${this.state.userName}/${el.id}/raw/README.md` :
+            `https://raw.githubusercontent.com/${this.state.userName}/${el.name}/master/README.md`              
+        }
     }
 
     fetchLists = ()=> {
@@ -60,11 +56,28 @@ class ReposWrapper extends Component {
                 }
                 axios.get(`https://api.github.com/users/${userName}/gists?page=${page}&per_page=${perPage}`,config)
                 .then(res => {
-                    const sortedArr = this.sortResults([...response.data,...res.data]);
-                    this.setState({reposList:this.state.reposList.concat(...sortedArr)},()=>{
-                        this.props.storeRepos(this.totalList());
-                    })
                     
+                    var topPost = { 
+                        created_at: new Date().toLocaleDateString(),
+                        fetchedContent: null,
+                        files: undefined,
+                        html_url: "https://github.com/farhad-taran/farhad-taran.github.io",
+                        id: 254476713,
+                        name: "How this blog was built around Github and Gists and using React, Redux",
+                        postType: "github",
+                        readMe: "https://raw.githubusercontent.com/farhad-taran/farhad-taran.github.io/master/README.md",
+                        updated_at: "4/18/2020",
+                        url: "https://api.github.com/repos/farhad-taran/farhad-taran.github.io",
+                    };
+
+                    var gists = res.data.map(el => this.mapPost(el,postTypes.gist));
+                    var githubs = response.data.map(el => this.mapPost(el,postTypes.github));
+                    var replacedPosts = [...gists,...githubs].map(el => (el.id === topPost.id) ? topPost : el)
+                    const sortedArr = this.sortResults(replacedPosts);
+                    var allPosts = this.state.reposList.concat(sortedArr);
+                    this.setState({reposList: allPosts},()=>{
+                        this.props.storeRepos(allPosts);
+                    })                   
                 })
             })
     }
@@ -82,7 +95,7 @@ class ReposWrapper extends Component {
 
     render(){
         const renderRepos = this.props.totalList.map(el => {
-           return <Repo name={el.name} key={el.id} id={el.id} url={el.url} />
+           return <Repo name={el.name} key={el.id} id={el.id} url={el.url} created_at={el.created_at} />
         })
 
         return(

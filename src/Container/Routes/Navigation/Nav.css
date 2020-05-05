@@ -7,13 +7,9 @@
     width: 100%;
     display: flex;
     justify-content: flex-start;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 3px rgba(1, 1, 1, 0.1);
     border-radius: 4px;
-    background-color: #fff;
-    padding-left: 5px;
-    padding-top: 2px;
     transition: all 0.3s;
-
 }
 
 
@@ -21,27 +17,8 @@
     text-decoration: none;
     font-size: 1.1rem;
     margin: 1rem;
-    color: #999;
-    font-weight: 300;
-    
+    font-weight: 300;   
 }    
-
-.nav-link:visited {
-    color: #999;
-}
-
-.nav-link:hover {
-    color: #555;
-}
-
-
-.active {
-    color: #000;
-}
-
-.active:visited {
-    color: #000;
-}
 
 .navbar >:not(#main-content){
     margin-top: -24px;
@@ -113,8 +90,6 @@
         width: 85vw;
         height: 65px;
     }
-
-
       .nav-links {
         display: flex;
         flex-direction: column;

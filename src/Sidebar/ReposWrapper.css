@@ -5,10 +5,8 @@
     align-items: flex-start;
     text-align: left;
     height: auto;
-    background: #ffcc19;
-    color: #6b6b6b;
-    padding: 1.5rem 0; 
-    
+    background-color: #ffcc19;
+    color: #6b6b6b;    
 }
 
 @media only screen and (max-width:768px) {

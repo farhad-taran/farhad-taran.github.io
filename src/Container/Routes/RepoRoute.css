@@ -1,20 +1,16 @@
 .repoRoute {
+  margin-top: 10px;
     color: #000;
-    margin: 3rem 1rem;
-    font-size: 1.4rem;
+    font-size: 1rem;
     min-height: 85vh;
-    padding: 0 1.5rem;
-    width: 75vw;
+    width: inherit;
     color: #111;
-    background: #fafafa;
     -webkit-text-size-adjust: 100%;
     -webkit-font-feature-settings: "kern" 1;
     -moz-font-feature-settings: "kern" 1;
     -o-font-feature-settings: "kern" 1;
     font-feature-settings: "kern" 1;
     font-kerning: normal;
-
-
 }
 
 .repoRoute > #content {
@@ -34,8 +30,9 @@
   height: 1px;
   flex: 0 1 auto;
   margin: 1em 0;
-  padding: 0;
+  padding: 0.1em;
   border: none;
+  margin: 10px 0px 10px 0px;
 }
 
 /**
@@ -43,12 +40,17 @@
  */
 .repoRoute a {
   color: #0366d6;
-  text-decoration: none; }
+  text-decoration: none; 
+}
+  
   .repoRoute a:visited {
-    color: #0366d6; }
+    color: #0366d6; 
+  }
+  
   .repoRoute a:hover {
     color: #0366d6;
-    text-decoration: underline; }
+    text-decoration: underline; 
+  }
 
 .repoRoute pre {
   background-color: #f6f8fa;
@@ -57,34 +59,8 @@
   line-height: 1.45;
   overflow: auto;
   padding: 16px;
+  margin: 15px 0px 15px 0px;
 }
-
-/**
-  * Code blocks
-  */
-
-.repoRoute code {
-  background-color: rgba(27,31,35,.05);
-  border-radius: 3px;
-  font-size: 85%;
-  margin: 0;
-  word-wrap: break-word;
-  padding: .2em .4em;
-  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
-}
-
-.repoRoute pre > code {
-  background-color: transparent;
-  border: 0;
-  display: inline;
-  line-height: inherit;
-  margin: 0;
-  overflow: visible;
-  padding: 0;
-  word-wrap: normal;
-  font-size: 100%;
-}
-
 
 /**
  * Blockquotes
@@ -102,6 +78,7 @@
   letter-spacing: -1px;
   font-style: italic;
 }
+
 .repoRoute blockquote * {
   font-style: normal !important;
   letter-spacing: 0;
@@ -150,14 +127,30 @@
   max-width: 100%;
 }
 
+.repoRoute h1,h2,h3,h4{
+  margin: 15px 0px 10px 0px;
+  border-bottom: 1px solid #eaecef;
+  color: #111;
+}
+
 .repoRoute p {
   line-height: 24px;
   font-weight: 400;
   font-size: 16px;
-  color: #24292e; }
+  color: #24292e; 
+}
+
+.repoRoute p > strong {
+  margin: 20px 0px 20px 0px !important;
+}
 
 .repoRoute ul {
-  margin-top: 0; }
+  margin: 10px 0px 10px 30px;
+}
+
+.repoRoute ol {
+  margin: 10px 0px 10px 30px;
+}
 
 .repoRoute li {
   color: #24292e;
@@ -168,16 +161,8 @@
 .repoRoute li + li {
   margin-top: 0.25em; }
 
-
-
 .repoRoute a:visited {
   color: #0366d6; }
-
-.repoRoute h1, .repoRoute h2, .repoRoute h3 {
-  border-bottom: 1px solid #eaecef;
-  color: #111;
-  /* Darker */ }
-
 
 .link,link:visited {
     color: #000;
@@ -192,15 +177,22 @@
     margin-top: 1rem;
 }
 
-/* @media only screen and (max-width:768px) {
-    .repoRoute {
-        padding-left: 4rem;
-    }
-
+.sourceLink{
+  float: left;
 }
- */
 
- @media only screen and (max-width:768px) {
+.postDates{
+  float:right;
+  color: #6b6b6b;
+}
+
+.repo-details{
+  padding-top: 1em;
+  margin-top: 2em;
+  border-top: 1px solid #eaecef;
+}
+
+@media only screen and (max-width:768px) {
   .repoRoute {
       width: 85vw;
   }

@@ -1,68 +1,15 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### How this blog was built around Github and Gists and using React, Redux
 
-## Available Scripts
+As an engineer most of my activity that is blog worth is done around github and gists and since I was tired of writing a seprate blog post and having to manage another website and its associated tools, I decided to build a static blog using React and Redux and have it hosted on github pages.
 
-In the project directory, you can run:
+this website that you are hopefully currently viewing is the result (not finished and currently improving) of that effort.
 
-### `npm start`
+### How it works
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+when a user visits the website, I am making 2 calls to retreieve my Gists and Github Repos and I use the descriptions of these contents to view them as links to posts on the left hand sidebar menu.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+when a user clicks on the sidebar menu item I then try to retrieve the content of the readme file associated with the repo or gist and render it on the main content pane, this way every time I create a repository or a gist it can be made visible on this blog as a post as long as it contains a README.md file. this way I can enjoy my coding and have a presence in the community with minimal effort.
 
-### `npm test`
+you can view or copy the public repo by visisting the source link provided below.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+FYI, If you are a hacker or a concerned citizen, dont worry about the auth token included in the source code as it has a very limited and strict scope(only allows public viewing of my content), (as much as I hate doing this, there is no way around it atm unfortunately).
