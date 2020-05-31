@@ -90,7 +90,9 @@ class Repo extends Component {
      }
 
     render(){
+
         let style = this.state.showMarkDown ? {visibility:'visible'} : {visibility:'hidden'} 
+
         return(
             <div className="repoRoute" style={style}>
                 <Spinner />
