@@ -10,7 +10,7 @@ const initialState = {
 }
 
 const reducer = (state=initialState,action)=>{
-    if(action.type == 'repos'){
+    if(action.type === 'repos'){
         return {
             ...state,
             fetchedData:{
@@ -20,14 +20,14 @@ const reducer = (state=initialState,action)=>{
         
     }
 
-    if(action.type == 'hide'){
+    if(action.type === 'hide'){
         return {
             ...state,
             showSidebar:false
         }
     }
 
-    if(action.type == 'toggle'){
+    if(action.type === 'toggle'){
         if(state.showSidebar == false) {
             return {
                 ...state,
@@ -40,28 +40,28 @@ const reducer = (state=initialState,action)=>{
         }
     }
 
-    if(action.type == 'showSpinner'){
+    if(action.type === 'showSpinner'){
         return {
             ...state,
             showSpinner:true
         }
     }
 
-    if(action.type == 'hideSpinner'){
+    if(action.type === 'hideSpinner'){
         return {
             ...state,
             showSpinner:false
         }
     }
     
-    if(action.type == 'showMarkDown'){
+    if(action.type === 'showMarkDown'){
         return {
             ...state,
             showMarkDown:true
         }
     }
     
-    if(action.type == 'hideMarkDown'){
+    if(action.type === 'hideMarkDown'){
         return {
             ...state,
             showMarkDown:false

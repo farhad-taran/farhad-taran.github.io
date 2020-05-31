@@ -4,7 +4,6 @@
     text-decoration: none;
     display: inline-block;
     font-size: 1rem;
-    transition: all 0.25s;
     overflow-x: hidden;
     margin: -3px 0 -3px 0;
     color: #6b6b6b;
@@ -17,8 +16,8 @@
 }
 
 .repo-active {
-    background: #e5b200;
-    color: #212529;
+    background-color: #6b6b6b;
+    color: #ffcc19;
 }
 
 #postIcon{

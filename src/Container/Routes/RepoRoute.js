@@ -32,47 +32,52 @@ class Repo extends Component {
             showMarkDown: false,
         })
 
-        if(fetchedRepo.fetchedContent != null){
-            this.props.hideSpinner();
-            this.setState({
-                fetchedContent:fetchedRepo.fetchedContent,
-                showMarkDown: true
-            }) 
+        if(fetchedRepo.fetchedContent !== null){
+            this.setResult(fetchedRepo,fetchedRepo.fetchedContent);
             return;
         }
 
         if(fetchedRepo.postType === postTypes.github){
-            axios.get(fetchedRepo.readMe)
-            .then(res => {
-                this.props.hideSpinner();
-                fetchedRepo.fetchedContent = res.data
-                this.setState({
-                    fetchedContent:res.data,
-                    showMarkDown: true
-                })                
-            })
+            axios
+            .get(fetchedRepo.readMe)
+            .then(res => this.setResult(fetchedRepo,res.data))
+            .catch(err => this.setResult(fetchedRepo,null));               
         }
 
         if(fetchedRepo.postType === postTypes.gist){
-            Object.keys(fetchedRepo.files).forEach(key => {                    
-                        if(key.includes('.md')){
-                            axios.get(fetchedRepo.files[key].raw_url)                            
-                           .then(res => {
-                               this.props.hideSpinner();
-                               fetchedRepo.fetchedContent = res.data
-                               this.setState({
-                                   fetchedContent:res.data,
-                                   showMarkDown: true
-                               })
-                           })
-                            
-                        }                    
-                 })
+            var readMe = Object.keys(fetchedRepo.files).find(key => key ==='README.md');
+
+            if(readMe)
+            {
+                axios.get(fetchedRepo.files[readMe].raw_url)                
+                .then(res =>this.setResult(fetchedRepo,res.data))
+                .catch(err => this.setResult(fetchedRepo,null));               
+            }
+            else
+            {
+                this.setResult(fetchedRepo,null);
+            }
         }
     }
 
+    setResult(fetchedRepo, fetchedContent)
+    {
+        if(fetchedContent === null)
+        {   
+            fetchedContent = fetchedRepo.name;
+            console.log(fetchedRepo.html_url);
+        }
+
+        this.props.hideSpinner();
+        fetchedRepo.fetchedContent = fetchedContent
+        this.setState({
+            fetchedContent: fetchedContent ,
+            showMarkDown: true
+        })
+    }
+
     componentDidMount(){
-        if(this.props.repos.length == 0 ){
+        if(this.props.repos.length === 0 ){
             this.props.history.replace('/about')
         }
         else {
@@ -85,7 +90,7 @@ class Repo extends Component {
      }
 
     render(){
-        let style = this.state.showMarkDown ? {visibility:'visible',opacity:'1',transition:'all 0.3s'} : {visibility:'hidden',opacity:'0',transition:'all 0.3s'} 
+        let style = this.state.showMarkDown ? {visibility:'visible',opacity:'1'} : {visibility:'hidden',opacity:'0'} 
         return(
             <div className="repoRoute" style={style}>
                 <Spinner />
@@ -93,7 +98,7 @@ class Repo extends Component {
                 <ReactMarkdown source={this.state.fetchedContent} escapeHtml={true} renderers={{ code: CodeBlock }} />
 
                 <div className="repo-details">
-                    <span className="postDates"> Created at: {this.state.created}</span>
+                    <span className="postDates"> {this.state.created} </span>
                     <a target="_blank" href={this.state.src}  className="sourceLink" >Source</a>
                 </div>
 

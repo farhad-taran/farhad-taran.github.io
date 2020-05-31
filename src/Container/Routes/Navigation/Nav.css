@@ -9,7 +9,6 @@
     justify-content: flex-start;
     box-shadow: 1px 1px 3px rgba(1, 1, 1, 0.1);
     border-radius: 4px;
-    transition: all 0.3s;
 }
 
 
@@ -46,7 +45,6 @@
     transform: scaleY(0);
     visibility: hidden;
     height: 0;
-    transition: all 0.3s;
 }
 
 .nav-links {
