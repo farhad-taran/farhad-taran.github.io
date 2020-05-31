@@ -77,7 +77,6 @@ class ReposWrapper extends Component {
 
                     var gists = res.data.map(el => this.mapPost(el,postTypes.gist));
                     var githubs = response.data.map(el => this.mapPost(el,postTypes.github));
-
                     var replacedPosts = [...gists,...githubs].filter(el => el !== null && el.id != topPost.id);
                     const sortedArr = this.sortResults(replacedPosts);
                     var allPosts = this.state.reposList.concat(sortedArr);
