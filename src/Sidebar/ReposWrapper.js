@@ -70,14 +70,14 @@ class ReposWrapper extends Component {
                         id: "254476713",
                         name: "How this blog was built and hosted on Github and Gists as a static site, using only React and Redux",
                         postType: "github",
-                        readMe: "https://raw.githubusercontent.com/farhad-taran/farhad-taran.github.io/master/README.md",
-                        updated_at: "4/18/2020",
+                        readMe: "https://raw.githubusercontent.com/farhad-taran/farhad-taran.github.io/source/README.md",
+                        updated_at: new Date().toLocaleDateString(),
                         url: "https://api.github.com/repos/farhad-taran/farhad-taran.github.io",
                     };
 
                     var gists = res.data.map(el => this.mapPost(el,postTypes.gist));
                     var githubs = response.data.map(el => this.mapPost(el,postTypes.github));
-                    
+
                     var replacedPosts = [...gists,...githubs].filter(el => el !== null && el.id != topPost.id);
                     const sortedArr = this.sortResults(replacedPosts);
                     var allPosts = this.state.reposList.concat(sortedArr);
