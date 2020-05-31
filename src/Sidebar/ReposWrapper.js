@@ -27,6 +27,11 @@ class ReposWrapper extends Component {
     }
 
     mapPost = (el, postType) => {
+        if(el.description === null || el.description === '')
+        {
+            console.log(el.html_url);
+            return null;
+        }
         return {
             name: el.description,
             fetchedContent: null,
@@ -72,12 +77,12 @@ class ReposWrapper extends Component {
 
                     var gists = res.data.map(el => this.mapPost(el,postTypes.gist));
                     var githubs = response.data.map(el => this.mapPost(el,postTypes.github));
-                    var replacedPosts = [...gists,...githubs]
-                    .filter(el => el.name !== null && el.name !== '' && el.id !== topPost.id);
-
+                    var replacedPosts = [...gists,...githubs].filter(el => el !== null && el.id != topPost.id);
                     const sortedArr = this.sortResults(replacedPosts);
                     var allPosts = this.state.reposList.concat(sortedArr);
+
                     allPosts.unshift(topPost);
+
                     this.setState({reposList: allPosts},() => {
                         this.props.storeRepos(allPosts);
                     })                   
