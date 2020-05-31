@@ -62,8 +62,8 @@ class ReposWrapper extends Component {
                         fetchedContent: null,
                         files: undefined,
                         html_url: "https://github.com/farhad-taran/farhad-taran.github.io",
-                        id: 254476713,
-                        name: "How this blog was built around Github and Gists and using React, Redux",
+                        id: "254476713",
+                        name: "How this blog was built and hosted on Github and Gists as a static site, using only React and Redux",
                         postType: "github",
                         readMe: "https://raw.githubusercontent.com/farhad-taran/farhad-taran.github.io/master/README.md",
                         updated_at: "4/18/2020",
@@ -72,10 +72,13 @@ class ReposWrapper extends Component {
 
                     var gists = res.data.map(el => this.mapPost(el,postTypes.gist));
                     var githubs = response.data.map(el => this.mapPost(el,postTypes.github));
-                    var replacedPosts = [...gists,...githubs].map(el => (el.id === topPost.id) ? topPost : el)
+                    var replacedPosts = [...gists,...githubs]
+                    .filter(el => el.name !== null && el.name !== '' && el.id !== topPost.id);
+
                     const sortedArr = this.sortResults(replacedPosts);
                     var allPosts = this.state.reposList.concat(sortedArr);
-                    this.setState({reposList: allPosts},()=>{
+                    allPosts.unshift(topPost);
+                    this.setState({reposList: allPosts},() => {
                         this.props.storeRepos(allPosts);
                     })                   
                 })
