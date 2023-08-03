@@ -9,5 +9,3 @@ When a user visits the website, I am making 2 calls to retreieve my Gists and Gi
 When a user clicks on the sidebar menu item I then try to retrieve the content of the readme file associated with the repo or gist and render it on the main content pane, this way every time I create a repository or a gist it can be made visible on this blog as a post as long as it contains a README.md file. this way I can enjoy my coding and have a presence in the community with minimal effort.
 
 You can view or copy the public repo by visisting the source link provided below.
-
-FYI, If you are a hacker or a concerned citizen, dont worry about the auth token included in the source code as it has a very limited and strict scope(only allows public viewing of my content), as much as I hate doing this, there is no way around it atm unfortunately.
