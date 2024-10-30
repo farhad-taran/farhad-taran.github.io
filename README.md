@@ -11,3 +11,7 @@ When a user clicks on the sidebar menu item I then try to retrieve the content o
 You can view or copy the public repo by visisting the source link provided below.
 
 FYI, If you are a hacker or a concerned citizen, dont worry about the auth token included in the source code as it has a very limited and strict scope(only allows public viewing of my content), as much as I hate doing this, there is no way around it atm unfortunately.
+
+### Deployments
+
+A PR is created to be merged into the source branch.
