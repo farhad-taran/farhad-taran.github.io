@@ -1,1 +1,0 @@
-export const postTypes = {gist:"gist",github:"github"};
