@@ -14,4 +14,4 @@ FYI, If you are a hacker or a concerned citizen, dont worry about the auth token
 
 ### Deployments
 
-A PR is created to be merged into the source branch.
+Running deploy command from [package.json file](./package.json) will deploy the latest changes to github pages.
