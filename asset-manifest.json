@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/farhad-taran.github.io/static/css/main.3e2df831.css",
-    "main.js": "/farhad-taran.github.io/static/js/main.3a770462.js",
-    "static/media/profilePicture.jpg": "/farhad-taran.github.io/static/media/profilePicture.2b55e4420731e1c7b260.jpg",
-    "index.html": "/farhad-taran.github.io/index.html",
-    "static/media/icon.svg": "/farhad-taran.github.io/static/media/icon.87a2466f0f15be74c64659d05ab33ab3.svg",
-    "static/media/icon-2.svg": "/farhad-taran.github.io/static/media/icon-2.5994381b58a259235ef1beef05363dc3.svg",
-    "main.3e2df831.css.map": "/farhad-taran.github.io/static/css/main.3e2df831.css.map",
-    "main.3a770462.js.map": "/farhad-taran.github.io/static/js/main.3a770462.js.map"
+    "main.css": "/static/css/main.3e2df831.css",
+    "main.js": "/static/js/main.972be2ec.js",
+    "static/media/profilePicture.jpg": "/static/media/profilePicture.2b55e4420731e1c7b260.jpg",
+    "index.html": "/index.html",
+    "static/media/icon.svg": "/static/media/icon.87a2466f0f15be74c64659d05ab33ab3.svg",
+    "static/media/icon-2.svg": "/static/media/icon-2.5994381b58a259235ef1beef05363dc3.svg",
+    "main.3e2df831.css.map": "/static/css/main.3e2df831.css.map",
+    "main.972be2ec.js.map": "/static/js/main.972be2ec.js.map"
   },
   "entrypoints": [
     "static/css/main.3e2df831.css",
-    "static/js/main.3a770462.js"
+    "static/js/main.972be2ec.js"
   ]
 }
