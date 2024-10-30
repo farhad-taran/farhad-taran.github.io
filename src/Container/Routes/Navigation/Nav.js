@@ -40,6 +40,8 @@ class Nav extends Component {
                         <img src={navbarIcon} alt="sidebar icon" className="navbar-icon" />
                         </label>
                     </main>
+                    
+                    
                     <div className="nav-links">
                         <NavLink className="nav-link" to="/about" onClick={this.hideNav}> About </NavLink>
                         {/* <NavLink className="nav-link" to="/contact" onClick={this.hideNav}> Contact </NavLink>
@@ -50,8 +52,31 @@ class Nav extends Component {
                         {/* <NavLink className="nav-link" to="/contact"> Contact </NavLink>
                         <NavLink className="nav-link" to="/repo"> Repository </NavLink> */}
                     </div>
+
                     
-                    
+                    <div className="nav-links">
+                        <NavLink className="nav-link" to={{pathname: "https://github.com/farhad-taran"}} target="_blank"> Github </NavLink>
+                        {/* <NavLink className="nav-link" to="/contact" onClick={this.hideNav}> Contact </NavLink>
+                        <NavLink className="nav-link" to="/repo" onClick={this.hideNav}> Repository </NavLink> */}
+                    </div>
+                    <div className="nav-links-lg">
+                        <NavLink className="nav-link" to={{pathname: "https://github.com/farhad-taran"}} target="_blank"> Github </NavLink>
+                        {/* <NavLink className="nav-link" to="/contact"> Contact </NavLink>
+                        <NavLink className="nav-link" to="/repo"> Repository </NavLink> */}
+                    </div>
+
+
+                    <div className="nav-links">
+                        <NavLink className="nav-link" to={{pathname: "https://www.linkedin.com/in/farhadtaran/"}} target="_blank"> LinkedIn </NavLink>
+                        {/* <NavLink className="nav-link" to="/contact" onClick={this.hideNav}> Contact </NavLink>
+                        <NavLink className="nav-link" to="/repo" onClick={this.hideNav}> Repository </NavLink> */}
+                    </div>
+                    <div className="nav-links-lg">
+                        <NavLink className="nav-link" to={{pathname: "https://www.linkedin.com/in/farhadtaran/"}} target="_blank"> LinkedIn </NavLink>
+                        {/* <NavLink className="nav-link" to="/contact"> Contact </NavLink>
+                        <NavLink className="nav-link" to="/repo"> Repository </NavLink> */}
+                    </div>
+
                 </div>
             </Fragment>
         )

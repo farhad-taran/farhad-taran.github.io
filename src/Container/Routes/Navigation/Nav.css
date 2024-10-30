@@ -7,7 +7,7 @@
     width: 100%;
     display: flex;
     justify-content: flex-start;
-    box-shadow: 1px 1px 3px rgba(1, 1, 1, 0.1);
+    box-shadow: 1px 1px 3px rgba(1, 1, 1, 0.3);
     border-radius: 4px;
 }
 
@@ -37,7 +37,6 @@
 
 .nav-links-lg {
     padding: 30px 5px 10px 0;
-    margin-left: auto;
 }
 
 .nav-links {
